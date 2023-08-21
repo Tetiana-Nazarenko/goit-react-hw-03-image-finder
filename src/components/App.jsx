@@ -94,19 +94,7 @@ class ImageApp extends Component {
       <div>
         <ToastContainer />
         <SearchBar onSubmit={this.handleSubmit} />
-        {images.length > 0 ? (
-          <ImageGallery images={images} />
-        ) : (
-          <p
-            style={{
-              padding: 100,
-              textAlign: 'center',
-              fontSize: 30,
-            }}
-          >
-            Image gallery is empty... 📷
-          </p>
-        )}
+        {images.length > 0 && <ImageGallery images={images} />}
         {isLoading && <Loader />}
         {images.length > 0 && totalPages !== currentPage && isLoading && (
           <Button onClick={this.loadMore} /> // Кнопка для загрузки дополнительных изображений
