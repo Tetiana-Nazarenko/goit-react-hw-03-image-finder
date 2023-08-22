@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { ButtonLoad } from './Button.styled';
-const Button = ({ onClick }) => {
+
+export const Button = ({ onClick }) => {
   return (
     <div>
       <ButtonLoad type="button" onClick={onClick}>
@@ -10,4 +9,3 @@ const Button = ({ onClick }) => {
     </div>
   );
 };
-export default Button;

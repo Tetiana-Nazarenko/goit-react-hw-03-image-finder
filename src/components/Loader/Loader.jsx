@@ -1,7 +1,7 @@
 import { Grid } from 'react-loader-spinner';
 import { LodeWrapper } from './Loader.styled';
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <LodeWrapper>
       <Grid
@@ -17,4 +17,3 @@ const Loader = () => {
     </LodeWrapper>
   );
 };
-export default Loader;

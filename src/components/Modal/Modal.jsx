@@ -1,50 +1,21 @@
-import { Component } from 'react';
-import { createPortal } from 'react-dom';
+import Modal from 'react-modal';
 
-import { Overlay, ModalWindow } from './Modal.styled';
-
-// Объект модального окна в DOM-дереве
-const modalRoot = document.querySelector('#modal-root');
-
-// Классовый компонент Modal
-class Modal extends Component {
-  // Метод жизненного цикла: вызывается после монтирования компонента
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown); // Добавляем обработчик события нажатия клавиши
-    document.body.style.overflow = 'hidden';
-  }
-
-  // Метод жизненного цикла: вызывается перед размонтированием компонента
-  componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown); // Удаляем обработчик события нажатия клавиши
-    document.body.style.overflow = 'visible';
-  }
-
-  // Обработчик события нажатия клавиши
-  handleKeyDown = event => {
-    if (event.code === 'Escape') {
-      this.props.onClose(); // Закрываем модальное окно при нажатии клавиши Escape
-    }
-  };
-
-  // Обработчик клика по фону модального окна
-  handleBackdropClick = event => {
-    if (event.currentTarget === event.target) {
-      this.props.onClose(); // Закрываем модальное окно при клике на фон
-    }
-  };
-
-  render() {
-    const { largeImageURL, tags } = this.props; // Получаем значения пропсов
-
-    return createPortal(
-      <Overlay onClick={this.handleBackdropClick}>
-        <ModalWindow>
-          <img src={largeImageURL} alt={tags} />
-        </ModalWindow>
-      </Overlay>,
-      modalRoot // Рендерим модальное окно в объект modalRoot в DOM-дереве
-    );
-  }
-}
-export default Modal;
+const customStyles = {
+  overlay: { zIndex: 2 },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+Modal.setAppElement('#root');
+export const ModalImage = ({ onOpen, onClose, children }) => {
+  return (
+    <Modal isOpen={onOpen} onRequestClose={onClose} style={customStyles}>
+      {children}
+    </Modal>
+  );
+};
