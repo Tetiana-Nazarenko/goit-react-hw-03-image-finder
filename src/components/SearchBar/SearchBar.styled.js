@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const SearchForm = styled.form`
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
